@@ -9,9 +9,10 @@
 
 #define CLS system("cls")
 
-int askQuestion(std::string question, const int min, const int max);
+bool askYesNo(const std::string question);
+int askQuestion(const std::string& question, const int min, const int max);
 
-int main()
+int main() 
 {
 	srand(static_cast<unsigned int>(time(NULL)));
 
@@ -32,27 +33,45 @@ int main()
 #endif // !DEBUG
 
 #ifdef DEBUG
-	int countPlayers(5);
+	int countPlayers(0);
 #endif // DEBUG
 	CLS;
 
 	Game game(namePlayer, countPlayers);
 	game.printTable();
 
+
+
 	return 0;
 }
 
-int askQuestion(std::string question, const int min, const int max)
+int askQuestion(const std::string& question, const int min, const int max)
 {
 	int answer;
 	do
 	{
 		std::cout << question << "\nEnter answer: ";
 		std::cin >> answer;
-		system("cls");
+		CLS;
 		if (answer<min || answer>max)
 			std::cout << "Wrong answer, try again!" << std::endl;
 	} while (answer<min || answer>max);
 
+
+
+	return answer;
+}
+
+bool askYesNo(const std::string question)
+{
+	char answer;
+	do
+	{
+		std::cout << question << "\nEnter answwer: ";
+		std::cin >> answer;
+		CLS;
+		if (answer != 'y' && answer != 'n')
+			std::cout << "Wrong answer, try again!" << std::endl;
+	} while (answer != 'y' && answer != 'n');
 	return answer;
 }

@@ -9,8 +9,7 @@
 class Game
 {
 	Deck m_deck;
-	Dealler m_dealler;
-	std::vector<Player>m_players;
+	std::vector<GenericPlayer*>m_players;
 
 	void startGame();
 

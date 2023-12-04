@@ -20,4 +20,6 @@ public:
 	virtual void addCard(Card* pCard);
 	std::string showHand();
 	int getPoints();
+	virtual void hideSecond();
+	virtual void showSecond();
 };

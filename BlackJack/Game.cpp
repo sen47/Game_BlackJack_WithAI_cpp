@@ -1,6 +1,6 @@
 #include"Game.h"
 
-enum players { PLAYER_CHARACTER };
+enum players { DEALLER, PLAYER_CHARACTER, FIRST_AI_PLAYER };
 
 const int MAX_SIZE(5);
 
@@ -16,28 +16,31 @@ void Game::startGame()
 	for (int i = 0; i < 2; ++i)
 	{
 		for (auto& el : m_players)
-			el.addCard(m_deck.getNextCard());
-		m_dealler.addCard(m_deck.getNextCard());
+			el->addCard(m_deck.getNextCard());
 	}
-	m_dealler.hideSecond();
+	m_players[DEALLER]->hideSecond();
 }
 
 /////////////////////////////////////////////////////////////////////////// Public
 
 Game::Game(const std::string& playerName, const int playersCount)
 {
-	for (int i = 0; i < playersCount + 1; ++i)
+	for (int i = 0; i < playersCount + 2; ++i)
 		if (i == PLAYER_CHARACTER)
-			m_players.push_back(Player(playerName));
+			m_players.push_back(new Player(playerName));
+		else if (i == DEALLER)
+			m_players.push_back(new Dealler);
 		else
-			m_players.push_back(Player(names[i - 1]));
+			m_players.push_back(new Player(names[i - 1]));
 
 	startGame();
 }
 
 void Game::printTable()
 {
-	std::cout << m_dealler.getName() << ": " << m_dealler.showHand() << " Points: " << m_dealler.getPoints() << "\n\n\n";
 	for (int i = 0; i < m_players.size(); ++i)
-		std::cout << m_players[i].getName() << ": " << m_players[i].showHand() << " Points: " << m_players[i].getPoints() << "\n\n";
+	{
+		std::cout << m_players[i]->getName() << ": " << m_players[i]->showHand() << " Points: " << m_players[i]->getPoints() << "\n\n";
+		std::cout << (i == DEALLER ? "\n\n\n" : "\n\n");
+	}
 }

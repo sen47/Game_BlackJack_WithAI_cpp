@@ -18,3 +18,6 @@ int GenericPlayer::getPoints()
 {
 	return m_hand.getTotal();
 }
+
+void GenericPlayer::hideSecond() {}
+void GenericPlayer::showSecond() {}

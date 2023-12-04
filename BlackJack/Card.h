@@ -17,7 +17,7 @@ class Card
 public:
 	Card(const Rank rank, const Suit suit);
 
-	std::string getStringName()const;
+	const std::string& getStringName()const;
 	int getValue()const;
 	bool isFaceUp()const;
 	

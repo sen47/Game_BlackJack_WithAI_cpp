@@ -10,6 +10,6 @@ public:
 	Dealler(const std::string& name = "Dealler");
 
 	bool isHitting()override;
-	void hideSecond();
-	void showSecond();
+	void hideSecond()override;
+	void showSecond()override;
 };

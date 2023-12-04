@@ -87,7 +87,7 @@ Card::Card(const Rank rank, const Suit suit)
 //////////////////////////////////////////////////////// Func
 ////////////////////////////////////////////////// Const
 
-std::string Card::getStringName()const
+const std::string& Card::getStringName()const
 {
 	if (m_isFaceUp)
 		return m_name;
